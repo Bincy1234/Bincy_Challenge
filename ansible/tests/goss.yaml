@@ -1,18 +1,18 @@
 package:
-  apache2:
-    title: apache2 is installed
+  ngnix:
+    title: Ngnix is installed
     installed: true
 
 file:
-  /var/www/html/index.html:
-    title: Apache2 home page
+  /var/www/static_web_app/index.html:
+    title: Static site home page
     exists: true
     owner: root
     group: root
-    contains: ["Hello SEA Team"]
-  /etc/apache2/sites-enabled/000-default.conf:
+    contains: ["Hello World!"]
+  /etc/nginx/sites-enabled/default:
     title: Apache2 configuration
     exists: true
     owner: root
     group: root
-    contains: ["RewriteEngine On", "RewriteCond %{HTTP:X-Forwarded-Proto} =http", "RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]"]
+    contains: ["return 301 "]

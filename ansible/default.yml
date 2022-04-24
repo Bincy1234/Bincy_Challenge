@@ -3,4 +3,4 @@
   connection: local
   become: yes
   roles:
-    - role: lortiz_apache
+    - role: static_web_app

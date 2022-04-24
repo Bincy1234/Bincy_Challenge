@@ -1,0 +1,45 @@
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+  - name: Update and upgrade apt packages
+    python3-apt:
+      upgrade: yes
+      update_cache: yes
+
+  - name: Install Nginx server and update the cache
+    apt:
+      name: nginx
+      state: latest
+      update_cache: yes
+
+  - name: Check Nginx is started and enabled to start at boot time.
+    service:
+        name: nginx
+        state: started
+        enabled: yes
+
+
+  - name: copy nginx config file
+    copy:
+      src: files/nginx.conf
+      dest: /etc/nginx/sites-available/nginx.conf
+
+
+  - name: create symlink
+    file:
+      src: /etc/nginx/sites-available/nginx.conf
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+
+
+  - name: copy the content of the web site
+    copy:
+      src: files/index.html
+      dest: /var/www/static_web_app/index.html
+
+  - name: Restart Ngnix number
+    service:
+      name: nginx
+      state: restarted
