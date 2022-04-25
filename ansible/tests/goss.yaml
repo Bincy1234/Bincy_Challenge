@@ -1,18 +1,55 @@
-package:
-  ngnix:
-    title: Ngnix is installed
-    installed: true
 
+
+port:
+  tcp:80:
+    listening: true
+process:
+  nginx:
+    running: true
+file:
+  /var/www/static_web_app:
+    exists: true
+    filetype: directory
 file:
   /var/www/static_web_app/index.html:
-    title: Static site home page
+    title: Web page
     exists: true
     owner: root
     group: root
     contains: ["Hello World!"]
   /etc/nginx/sites-enabled/default:
-    title: Apache2 configuration
+    title: Ngnix configuration
     exists: true
     owner: root
     group: root
-    contains: ["return 301 "]
+    contains: [return 301 https://]
+
+#
+# file:
+#   /var/log/nginx/access.log:
+#     exists: true
+#     linked-to: /dev/stdout
+#     filetype: symlink
+#   /var/log/nginx/error.log:
+#     exists: true
+#     linked-to: /dev/stderr
+#     filetype: symlink
+# package:
+#   nginx:
+#     installed: true
+#     versions:
+#     - 1.11.10-1~jessie
+#
+# process:
+#   nginx:
+#     running: true
+# http:
+#   http://localhost:
+#     status: 200
+#     timeout: 5000
+#     body:
+#     - Welcome to nginx!
+
+
+    # curl -fsSL https://goss.rocks/install | sh
+    #goss validate --format documentation
