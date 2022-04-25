@@ -6,3 +6,4 @@ ec2-key
 *.crt
 *.pub
 *.tf-e
+venv

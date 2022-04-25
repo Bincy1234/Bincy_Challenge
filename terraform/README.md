@@ -25,8 +25,8 @@ an autoscaling policy to handle increased loads.
 
 The launch configuration make up the web server instances. The launch
 configuration executes a user-data script when a new EC2 instance is spun up.
-The user-data downloads and executes Ansible to install apache2 and copy over
-the necessary configuration files that enables apache to redirect any client
+The user-data downloads and executes Ansible to install ngnix and copy over
+the necessary configuration files that enables ngnix to redirect any client
 requests received from the load balancer on port 80 to port 443. The script
 then downloads and runs goss to do validation of the infrastructure
 configuration.
