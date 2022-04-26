@@ -1,11 +1,11 @@
 provider "aws" {
-  region     = "us-east-1"
+  region = "us-east-1"
 }
 
-resource "aws_elb" "webserver_elb" {
-  name               = "webserver-elb"
-  availability_zones = ["${data.aws_availability_zones.all.names}"]
-  security_groups = ["${aws_security_group.elb_sg.id}"]
+resource "aws_elb" "server_elb" {
+  name               = "server-elb"
+  availability_zones = ["${data.aws_availability_zones.available.names[0]}"]
+  security_groups    = ["${aws_security_group.elb_sg.id}"]
 
   listener {
     instance_port     = 80
@@ -15,11 +15,11 @@ resource "aws_elb" "webserver_elb" {
   }
 
   listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 443
-    lb_protocol       = "https"
-    ssl_certificate_id = "arn:aws:iam::790412210675:server-certificate/elb-cert-x509"
+    instance_port      = 80
+    instance_protocol  = "http"
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = aws_iam_server_certificate.cert.arn
   }
 
   health_check {
@@ -35,7 +35,14 @@ resource "aws_elb" "webserver_elb" {
   connection_draining         = true
   connection_draining_timeout = 400
 
-  tags {
-    Name = "webserver-elb"
+}
+
+resource "aws_iam_server_certificate" "cert" {
+  name_prefix      = "ssl cert"
+  certificate_body = file("server.pem")
+  private_key      = file("privatekey.pem")
+
+  lifecycle {
+    create_before_destroy = true
   }
 }

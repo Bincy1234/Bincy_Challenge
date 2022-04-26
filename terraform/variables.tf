@@ -1,11 +1,14 @@
 variable "instance_type" {
-  default = "t2.micro"
+  description = "Type of instance to provision."
+  default     = "t2.micro"
 }
 
 variable "min_size" {
-  default = 1
+  description = "The minimum (and desired) size of the auto scale group."
+  default     = 1
 }
 
 variable "max_size" {
-  default = 3
+  description = "The maximum size of the auto scale group."
+  default     = 3
 }

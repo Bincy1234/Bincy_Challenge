@@ -1,4 +1,4 @@
 resource "aws_key_pair" "ec2_key" {
-  key_name   = "ec2-key"
-  public_key = "${file("ec2-key.pub")}"
+  key_name   = "rsa-key"
+  public_key = file("rsa-key.pub")
 }
