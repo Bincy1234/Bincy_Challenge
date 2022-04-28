@@ -1,4 +1,5 @@
 - name: Restart Nginx
+  listen: ssl certificate changed
   service:
     name: nginx
     state: restarted

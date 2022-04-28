@@ -11,19 +11,6 @@
       state: started
       enabled: yes
 
-
-- name: copy nginx config file
-  copy:
-    src: nginx.conf
-    dest: /etc/nginx/sites-available/nginx.conf
-
-
-- name: create symlink
-  file:
-    src: /etc/nginx/sites-available/nginx.conf
-    dest: /etc/nginx/sites-enabled/default
-    state: link
-
 - name: Create target directory
   file:
     path: /var/www/static_web_app
@@ -34,6 +21,30 @@
   copy:
     src: index.html
     dest: /var/www/static_web_app/index.html
+
+
+- name: copy the ssl certificate and private key
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 644
+    owner: root
+    group: root
+  with_items:
+    - { src: nginx.crt, dest: /etc/ssl/certs/localhost.crt }
+    - { src: nginx.key, dest: /etc/ssl/private/localhost.key }
+
+- name: copy nginx config file
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/sites-available/nginx.conf
+
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/nginx.conf
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+
 
 - name: Restart Ngnix number
   service:

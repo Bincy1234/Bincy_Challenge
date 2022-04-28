@@ -19,7 +19,7 @@ resource "aws_elb" "server_elb" {
     instance_protocol  = "http"
     lb_port            = 443
     lb_protocol        = "https"
-    ssl_certificate_id = aws_iam_server_certificate.cert.arn
+    ssl_certificate_id = "arn:aws:iam::251125865220:server-certificate/my-elb-cert"
   }
 
   health_check {
@@ -38,7 +38,7 @@ resource "aws_elb" "server_elb" {
 }
 
 resource "aws_iam_server_certificate" "cert" {
-  name_prefix      = "ssl cert"
+  name_prefix      = "ssl_cert"
   certificate_body = file("server.pem")
   private_key      = file("privatekey.pem")
 

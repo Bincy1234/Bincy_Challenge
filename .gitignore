@@ -2,8 +2,4 @@
 *.tfstate
 *.tfstate.backup
 ec2-key
-*.pem
-*.crt
-*.pub
 *.tf-e
-venv
