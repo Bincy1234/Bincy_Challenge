@@ -9,9 +9,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
   threshold           = "80"
 
   dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.server_aasg.name
+    AutoScalingGroupName = aws_autoscaling_group.asg.name
   }
 
   alarm_description = "This metric monitors ec2 cpu utilization"
-  alarm_actions     = ["${aws_autoscaling_policy.server_aasg_policy.arn}"]
+  alarm_actions     = ["${aws_autoscaling_policy.asg_policy.arn}"]
 }

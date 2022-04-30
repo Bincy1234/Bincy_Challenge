@@ -2,8 +2,8 @@
 set -e
 sudo apt-get update
 sudo apt-get install -y python3 python-pip virtualenv git ansible
-git clone https://github.com/skippyPeanutButter/SREChallenge.git
-cd SREChallenge
+git clone https://github.com/Bincy1234/Bincy_Challenge.git
+cd Bincy_Challenge
 virtualenv venv --python=/usr/bin/python3 && source venv/bin/activate
 
 pip install -r requirements.txt
