@@ -3,6 +3,9 @@
 port:
   tcp:80:
     listening: true
+package:
+  nginx:
+    installed: true
 process:
   nginx:
     running: true
@@ -23,6 +26,11 @@ file:
     owner: root
     group: root
     contains: [return 301 https://]
+http:
+  http://localhost:
+    status: 200
+    body:
+    - Hello World!
 
 #
 # file:

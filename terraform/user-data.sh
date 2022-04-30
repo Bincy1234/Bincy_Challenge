@@ -1,14 +1,18 @@
 #!/bin/bash
 set -e
 sudo apt-get update
-sudo apt-get install -y python3 python-pip virtualenv git ansible
+sudo apt-get install -y python3 python3-pip virtualenv git vim curl
 git clone https://github.com/Bincy1234/Bincy_Challenge.git
 cd Bincy_Challenge
-virtualenv venv --python=/usr/bin/python3 && source venv/bin/activate
-
-pip install -r requirements.txt
-cd ansible && ansible-playbook default.yml -e 'ansible_python_interpreter=/usr/bin/python3'
-curl -fsSL https://goss.rocks/install | sudo GOSS_DST=/usr/bin sh
-cd tests && goss validate > test.html
-sudo chown root. test.html && mv test.html /var/www/html/test.html
+virtualenv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+cd ansible
+echo ${vault_password} > ~/.vault_pass.txt
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+ansible-playbook default.yml
+curl -fsSL https://goss.rocks/install | sh
+cd tests
+goss validate --format documentation
+sudo chown root. test.html && mv test.html /var/www/static_web_app/test.html
 EOF
