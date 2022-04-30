@@ -15,4 +15,5 @@ curl -fsSL https://goss.rocks/install | sh
 cd tests
 goss validate --format documentation
 sudo chown root. test.html && mv test.html /var/www/static_web_app/test.html
+sudo service nginx restart 
 EOF
