@@ -33,7 +33,3 @@ data "aws_ami" "ubuntu" {
 
     owners = ["099720109477"]
 }
-
-output "test" {
-  value = data.aws_ami.ubuntu
-}
