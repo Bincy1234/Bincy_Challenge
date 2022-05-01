@@ -6,6 +6,7 @@ resource "aws_launch_configuration" "as_conf" {
   instance_type   = "t2.micro"
   user_data = <<-EOF
               #!/bin/bash
+              set -e
               sudo apt-get update
               sudo apt-get install -y python3 python3-pip virtualenv git vim curl
               git clone https://github.com/Bincy1234/Bincy_Challenge.git
@@ -48,8 +49,4 @@ resource "aws_autoscaling_policy" "asg_policy" {
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.asg.name
-}
-
-output "web-server_dns_name" {
-  value = aws_launch_configuration.as_conf.dns_name
 }
