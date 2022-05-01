@@ -1,10 +1,28 @@
 resource "aws_launch_configuration" "as_conf" {
-  name_prefix             = "web-server-"
+  name_prefix     = "web-server-"
   image_id        = data.aws_ami.ubuntu.id
-  user_data       = "file("user-data.sh")"
   security_groups = [aws_security_group.lc_sg.id]
   key_name        = aws_key_pair.deployer.key_name
   instance_type   = "t2.micro"
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update
+              sudo apt-get install -y python3 python3-pip virtualenv git vim curl
+              git clone https://github.com/Bincy1234/Bincy_Challenge.git
+              cd Bincy_Challenge
+              virtualenv .venv
+              source .venv/bin/activate
+              pip3 install -r requirements.txt
+              cd ansible
+              echo '"${var.vault_password}"' > ~/.vault_pass.txt
+              export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+              ansible-playbook default.yml
+              curl -fsSL https://goss.rocks/install | sudo GOSS_DST=/usr/bin sh
+              cd tests
+              goss validate --format documentation > test.html
+              sudo chown root. test.html
+              sudo mv test.html /var/www/static_web_app/test/test.html
+              EOF
 
   lifecycle {
     create_before_destroy = true
@@ -30,4 +48,8 @@ resource "aws_autoscaling_policy" "asg_policy" {
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.asg.name
+}
+
+output "web-server_dns_name" {
+  value = aws_launch_configuration.as_conf.dns_name
 }
