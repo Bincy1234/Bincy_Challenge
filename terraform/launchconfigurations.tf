@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "as_conf" {
-  name_prefix     = "server config"
+  name            = "web-server"
   image_id        = data.aws_ami.ubuntu.id
   user_data       = file("user-data.sh")
   security_groups = [aws_security_group.lc_sg.id]
@@ -12,12 +12,12 @@ resource "aws_launch_configuration" "as_conf" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  name                 = "terraform-asg"
-  launch_configuration = aws_launch_configuration.as_conf.name
-  min_size             = 1
-  max_size             = 3
+  name                      = "web-server-asg"
+  launch_configuration      = aws_launch_configuration.as_conf.name
+  min_size                  = 1
+  max_size                  = 3
   health_check_grace_period = "300"
-  vpc_zone_identifier  = module.vpc.public_subnets
+  vpc_zone_identifier       = module.vpc.public_subnets
 
   lifecycle {
     create_before_destroy = true
@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "asg" {
 }
 
 resource "aws_autoscaling_policy" "asg_policy" {
-  name                   = "server-asg-policy"
+  name                   = "web-server-asg-policy"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300

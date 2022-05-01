@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
-  alarm_name          = "Server cpu utilization"
+  alarm_name          = "web-server cpu utilization"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
