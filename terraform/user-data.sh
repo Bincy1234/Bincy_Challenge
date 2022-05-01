@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 sudo apt-get update
 sudo apt-get install -y python3 python3-pip virtualenv git vim curl
 git clone https://github.com/Bincy1234/Bincy_Challenge.git
@@ -14,5 +13,6 @@ ansible-playbook default.yml
 curl -fsSL https://goss.rocks/install | sh
 cd tests
 goss validate --format documentation > test.html
-sudo chown root. test.html && mv test.html /var/www/static_web_app/test.html
+sudo chown root. test.html
+mv test.html /var/www/static_web_app/test.html
 EOF

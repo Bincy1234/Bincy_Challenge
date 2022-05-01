@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "as_conf" {
-  name            = "web-server"
+  name_prefix             = "web-server-"
   image_id        = data.aws_ami.ubuntu.id
-  user_data       = file("user-data.sh")
+  user_data       = "file("user-data.sh")"
   security_groups = [aws_security_group.lc_sg.id]
   key_name        = aws_key_pair.deployer.key_name
   instance_type   = "t2.micro"
