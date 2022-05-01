@@ -44,8 +44,7 @@
     src: /etc/nginx/sites-available/nginx.conf
     dest: /etc/nginx/sites-enabled/default
     state: link
-
-
+    
 - name: Restart Ngnix number
   service:
     name: nginx
