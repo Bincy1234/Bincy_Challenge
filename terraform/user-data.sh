@@ -13,6 +13,6 @@ export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
 ansible-playbook default.yml
 curl -fsSL https://goss.rocks/install | sh
 cd tests
-goss validate --format documentation
+goss validate --format documentation > test.html
 sudo chown root. test.html && mv test.html /var/www/static_web_app/test.html
 EOF
