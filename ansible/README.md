@@ -1,16 +1,17 @@
-###Provisioning
+# Provisioning
 
 The Ansible role [static_web_app]
+
 > installs an ngnix server
 > copies content of html file which display Hello World to the Server
 > Updates config file to listen to http and https request, update ssl certs for
 HTTPS request, redirect HTTP requests it receives on port 80 to HTTPs on port 443
-and to dispaly `HelloWorld` html at https://localhost/ and test results at 
+and to dispaly `HelloWorld` html at https://localhost/ and test results at
 https://localhost/test/
 
 ## Steps to run the Ansible role
 
-# Pre-requisites
+### Pre-requisites
 > Make sure the following tools are installed.
 
 >>> python3
@@ -32,7 +33,7 @@ export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
 
 ```
 
-# Execute
+###Execute
 
 ```
 ansible-playbook default.yml
@@ -43,10 +44,10 @@ ansible-playbook default.yml
 Configuration testing on the Web Server is done using goss[].
 
 
-# Pre-requisites
+### Pre-requisites
 >Install goss
 
-# Execute
+### Execute
 ```
 goss validate --format documentation
 ```
