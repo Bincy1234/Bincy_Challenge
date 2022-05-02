@@ -14,9 +14,9 @@ This project host a static web page with the following content on [AWS]().
   </html>
 
   ```
-  * The creation and deployment of the application done with [Ansible]().
-For the configuration instaruction visit [Ansible README](ansibel/README.md)
+  * The creation and deployment of the application done with [Ansible](https://www.ansible.com/).
+    For the configuration details visit [projects Ansible README.md](ansible/README.md)
 
   * The entire scalable and self healing infrastructure of the Web Server is
- maintained as code using [Terraform]().For the setup instructions visit
- [Terraform README](terraform/README.md)
+    maintained as code using [Terraform](https://www.terraform.io/).
+    For the setup instructions visit [projects Terraform README.md](terraform/README.md)
