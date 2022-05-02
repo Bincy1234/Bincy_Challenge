@@ -1,7 +1,7 @@
 # Provisioning
 
 
-The Ansible role [static_web_app]
+The Ansible role `static_web_app`
 
 * Installs an ngnix server
 * Copies content of html file which display Hello World to the Server
@@ -33,10 +33,10 @@ https://localhost/test/
   ```
   echo "<vault_password>" > ~/.vault_pass.txt
   export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
-  
+
   ```
 
-###Execute
+### Execute
 
   ```
   ansible-playbook default.yml
