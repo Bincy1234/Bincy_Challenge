@@ -27,7 +27,7 @@ The terraform code creates the following resources
 
       The launch configuration launches the EC2 instances. Once the instance is up
       it executes a user-data script. The user-data
-      downloads necessary tools and executes the ansible role [`static_web_app`](ansible)
+      downloads necessary tools and executes the ansible role [`static_web_app`](../ansible)
       to display HelloWorld.
 
 
@@ -73,8 +73,7 @@ The terraform code creates the following resources
 
 * Install AWS cli
 
-  Click [here]
-  (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+  Click [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
   to visit AWS docs on installing AWS CLI.
 
 * Upload certs to AWS IAM

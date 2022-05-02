@@ -7,17 +7,16 @@ The Ansible role `static_web_app` does the following -
   * Copy content of the html file which display Hello World to the Server.
   * Updates config file to listen to http and https request, update ssl certs for
     HTTPS request, redirect HTTP requests it receives on port 80 to HTTPs on port 443
-    and to display `HelloWorld` html at https://localhost/ and test results at
+    and to display `HelloWorld!` html at https://localhost/ and test results at
     https://localhost/test/.
 
-    ```
+    ---
     ***Note:***
       The connection between client and server is made secured using SSL handshake.
       The private key used for encryption/decryption is encrypted and stored in
-      source control using [Ansible Vault]
-      (https://docs.ansible.com/ansible/latest/user_guide/vault.html).
+      source control using [Ansible Vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html).
 
-    ```
+    ---
 ## Steps to run the Ansible role
 
 ### Pre-requisites
@@ -54,8 +53,7 @@ The Ansible role `static_web_app` does the following -
 
 ## Steps to test the Ansible role.
 
-  Configuration testing on the Web Server is done using goss
-  [https://github.com/aelsabbahy/goss/blob/master/docs/manual.md].
+  Configuration testing on the Web Server is done using [goss](https://github.com/aelsabbahy/goss/blob/master/docs/manual.md).
 
 
 ### Pre-requisites
