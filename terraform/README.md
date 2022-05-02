@@ -117,7 +117,7 @@ The terraform code creates the following resources
 
 ## Testing
 
-# Prerequistes
+### Prerequistes
 
 * Install stress package
 
