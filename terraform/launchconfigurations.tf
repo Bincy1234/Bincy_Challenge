@@ -11,11 +11,11 @@ resource "aws_launch_configuration" "as_conf" {
               sudo apt-get install -y python3 python3-pip virtualenv git vim curl
               git clone https://github.com/Bincy1234/Bincy_Challenge.git
               cd Bincy_Challenge
-              virtualenv .venv
-              source .venv/bin/activate
+              virtualenv venv
+              source venv/bin/activate
               pip3 install -r requirements.txt
               cd ansible
-              echo '"${var.vault_password}"' > ~/.vault_pass.txt
+              echo "${var.vault_password}" > ~/.vault_pass.txt
               export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
               ansible-playbook default.yml
               curl -fsSL https://goss.rocks/install | sudo GOSS_DST=/usr/bin sh
@@ -40,6 +40,7 @@ resource "aws_autoscaling_group" "asg" {
 
   lifecycle {
     create_before_destroy = true
+    ignore_changes = [ load_balancers, target_group_arns ]
   }
 }
 
