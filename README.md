@@ -1,7 +1,7 @@
 ## Static Web Application
 
-This project host a static web page with the following content on [AWS]
-(https://aws.amazon.com/getting-started/).
+  This project host a static web page with the following content on
+  [AWS](https://aws.amazon.com/getting-started/).
 
   ```
 
