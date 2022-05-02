@@ -84,4 +84,4 @@ The Ansible role `static_web_app` does the following -
 
       ```
 
-    * curl -k  https://localhost/test/ displays goss test result.
+  * curl -k  https://localhost/test/ displays goss test result.
