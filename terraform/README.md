@@ -27,7 +27,7 @@ The terraform code creates the following resources
 
       The launch configuration launches the EC2 instances. Once the instance is up
       it executes a user-data script. The user-data
-      downloads necessary tools and executes the ansible role [`static_web_app`][ansible]
+      downloads necessary tools and executes the ansible role [`static_web_app`](ansible)
       to display HelloWorld.
 
 
@@ -82,9 +82,8 @@ The terraform code creates the following resources
   ```
   aws iam upload-server-certificate --server-certificate-name alb-cert-x509 --certificate-body file://server.crt --private-key file://server.key
 
-  ```
-  **output**
-      ```
+
+  **Sample Output**
       {
         "ServerCertificateMetadataList": [
             {
@@ -98,7 +97,7 @@ The terraform code creates the following resources
           }
       }
 
-      ```
+  ```
 * Set the terraform variable `TF_VAR_certificateID` with the value of the
   ServerCertificate Arn.
 
@@ -146,5 +145,5 @@ The terraform code creates the following resources
 
 2) ` stress --cpu 1 --timeout 240 `
 
-  After 2 mins verify that a Cloud Watch Alarm is triggered and a new EC2 instance
-  is provisioned and added to ALB to handle load.
+    After 2 mins verify that a Cloud Watch Alarm is triggered and a new EC2 instance
+    is provisioned and added to ALB to handle load.
